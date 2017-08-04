@@ -1,0 +1,64 @@
+﻿@model AGL.Models.AGLData
+
+<img src="~/Images/AglLogo.png" style="width:50%;height:100px" />
+
+<div class="panel"> 
+    <hr />
+    <div class="container  ">
+        <div class="container  ">
+            <div class="label-default "> Gender Male </div>
+            @if (Model != null)
+            {
+                foreach (var person in Model.Persons.Where(p => p.Gender.ToLower() == "male"))
+                {
+                    <div class="list-group-item-heading"  >
+                        <strong>  @person.Name</strong>
+                        <ul class="list-group-item-heading">
+                            @{
+                    if (person.Pets != null && person.Pets.Any())
+                    {
+                        var sortedpets = person.Pets.OrderBy(p => p.Name).ToList();
+                        foreach (var pet in sortedpets)
+                        {
+                            if (pet.Type.ToLower() == "cat")
+                            {
+                                <li class="list-group-item " style="margin-left:5%"> @pet.Name </li>
+                            }
+                        }
+                    }
+                            }
+                        </ul>
+</div>
+                }
+            }
+        </div>
+        <div class="container ">
+            <div class="label-default"> Gender Female </div>
+
+            @if (Model != null)
+            {
+                foreach (var person in Model.Persons.Where(p => p.Gender.ToLower() == "female"))
+                {
+                   <div class="list-group-item-heading">
+                       <strong>  @person.Name</strong>
+                        <ul class="list-group-item-heading">
+                            @{
+                                if (person.Pets != null && person.Pets.Any())
+                                {
+                                    var sortedpets = person.Pets.OrderBy(p => p.Name).ToList();
+                                    foreach (var pet in sortedpets)
+                                    {
+                                        if (pet.Type.ToLower() == "cat")
+                                        {
+                                            <li class="list-group-item " style="margin-left:5%"> @pet.Name </li>
+                                        }
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
